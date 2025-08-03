@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/img/favicon.ico" type="image/x-icon">
+  <title>Zona Admin - UmbriaFurs</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&family=Teko:wght@300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+
+</head>
+<body>
+  <nav>
+    <span class="UF-name">UMBRIAFURS</span>
+    
+    <button class="hamburger" id="hamburger">
+      <span class="material-icons">menu</span>
+    </button>
+
+    <ul class="nav-links" id="navLinks">
+      <li>
+        <a href="/index.html">
+          <span class="material-icons">home</span>
+          <span class="link-text">Home</span>
+        </a>
+      </li>
+      <li>
+        <a href="/login.html">
+          <span class="material-icons">login</span>
+          <span class="link-text">Login</span>
+        </a>
+      </li>
+      <li>
+        <a href="/eventi-passati.html">
+          <span class="material-icons">event_note</span>
+          <span class="link-text">Eventi Passati</span>
+        </a>
+      </li>
+      <li>
+          <a href="/chi-siamo.html">
+            <span class="material-icons">groups</span>
+            <span class="link-text">Chi Siamo</span>
+          </a>
+      </li>
+    </ul>
+
+    <div class="overlay" id="overlay"></div>
+  
+  </nav>
+
+
+  
+  <header class="admin-header"> 
+    <div class="restricted-container">
+      <h1><i class="material-icons">event</i> Pannello di Amministrazione</h1>
+    </div>
+  </header>
+
+  <main class="restricted-container">
+
+
+    <!-- Sezione Inserimento Evento -->
+    <div class="restricted-card">
+      <h4><i class="material-icons">add_circle</i> Nuovo Evento</h4>
+      <form id="eventoForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="titolo">Titolo</label>
+            <input type="text" id="titolo" name="titolo" class="form-control" placeholder="Titolo dell'evento" required>
+          </div>
+          <div class="form-group">
+            <label for="localita">Luogo</label>
+            <input type="text" id="localita" name="localita" class="form-control" placeholder="Località dell'evento" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="descrizione">Descrizione</label>
+          <textarea id="descrizione" name="descrizione" class="form-control" placeholder="Descrizione dettagliata dell'evento" required></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="data_evento">Data</label>
+            <input type="date" id="data_evento" name="data_evento" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="ora_inizio">Ora Inizio</label>
+            <input type="time" id="ora_inizio" name="ora_inizio" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="ora_fine">Ora Fine</label>
+            <input type="time" id="ora_fine" name="ora_fine" class="form-control" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="immagineInput">Immagine</label>
+          <input type="file" id="immagineInput" class="form-control" accept="image/*" required>
+        </div>
+                
+        <button type="submit" class="btn btn-primary">
+          <i class="material-icons">save</i> Salva Evento
+        </button>
+        <div id="modificaMessage" class="alert hidden"></div>
+      </form>
+    </div>
+
+    <!-- Sezione Modifica Evento -->
+    <div class="restricted-card">
+      <h4><i class="material-icons">edit</i> Modifica Evento</h4>
+      
+        <div class="form-group">
+
+          <label for="selezionaEvento">Seleziona Evento</label>
+            <div class="form-row">
+          <select id="selezionaEvento" class="form-control">
+          </select>
+          <button type="button" id="caricaUltimoEventoBtn" class="btn btn-info">
+            <i class="material-icons">history</i> Carica Ultimo Evento
+          </button>
+        </div>
+        </div>
+      
+      <form id="modificaEventoForm" class="hidden">
+        <input type="hidden" id="eventoId">
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="modificaTitolo">Titolo</label>
+            <input type="text" id="modificaTitolo" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="modificaLocalita">Luogo</label>
+            <input type="text" id="modificaLocalita" class="form-control" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="modificaDescrizione">Descrizione</label>
+          <textarea id="modificaDescrizione" class="form-control" required></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="modificaData">Data</label>
+            <input type="date" id="modificaData" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="modificaOraInizio">Ora Inizio</label>
+            <input type="time" id="modificaOraInizio" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="modificaOraFine">Ora Fine</label>
+            <input type="time" id="modificaOraFine" class="form-control" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="modificaImmagine">Nuova Immagine (opzionale)</label>
+          <input type="file" id="modificaImmagine" class="form-control" accept="image/*">
+          <img id="anteprimaImmagine" src="/img/evento_banner.webp" class="photo-preview hidden" alt="anteprimaImmagine">
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">
+            <i class="material-icons">save</i> Salva Modifiche
+          </button>
+          <button type="button" id="eliminaEventoBtn" class="btn btn-danger">
+            <i class="material-icons">delete</i> Elimina Evento
+          </button>
+          <span id="modificaLoading" class="loading hidden">
+            <span class="spinner"></span> Salvataggio in corso...
+          </span>
+        </div>
+      </form>
+    </div>
+
+    <!-- Sezione Gestione Utenti -->
+    <div class="restricted-card">
+      <h4><i class="material-icons">manage_accounts</i> Gestione Utenti</h4>
+      <div id="listaUtenti">
+        <p><i class="material-icons spin">refresh</i> Caricamento utenti in corso...</p>
+      </div>
+    </div>
+
+    <!-- Sezione Gestione Foto -->
+    <div class="restricted-card">
+      <h4><i class="material-icons">photo_library</i> Gestione Foto Eventi</h4>
+      <div class="form-group">
+        <label for="fotoEventoSelect">Seleziona Evento</label>
+        <div class="form-row">
+          <select id="fotoEventoSelect" class="form-control">
+          </select>
+          <button id="mostraFotoBtn" class="btn btn-secondary">
+            <i class="material-icons">visibility</i> Mostra Foto
+          </button>
+        </div>
+      </div>
+      
+      <div id="fotoContainer" class="mt-3"></div>
+    </div>
+
+    <!-- Sezione Aggiungi Foto -->
+    <div class="restricted-card">
+      <h4><i class="material-icons">cloud_upload</i> Aggiungi Foto</h4>
+      <form id="fotoForm">
+        <div class="form-group">
+          <label for="eventoSelect">Evento</label>
+          <div class="form-row">
+            <select id="eventoSelect" class="form-control"></select>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="fotoInput">Foto</label>
+          <input type="file" id="fotoInput" class="form-control" multiple accept="image/*" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="fotoDesc">Descrizione (opzionale)</label>
+          <textarea id="fotoDesc" class="form-control" placeholder="Breve descrizione delle foto"></textarea>
+        </div>
+        
+        <button type="submit" class="btn btn-primary"><i class="material-icons">upload</i> Carica Foto</button>
+        <div id="caricamentoStatus" class="mt-3"></div>
+      </form>
+    </div>
+
+    <!-- Sezione Volontari -->
+    <div class="restricted-card">
+      <h4 ><i class="material-icons">groups</i> Lista Volontari</h4>
+      <div id="listaVolontari">
+        <p><i class="material-icons spin">refresh</i> Caricamento volontari in corso...</p>
+      </div>
+    </div>
+  </main>
+<script src="/nav.js"></script>
+
+<script src="restricted.js"></script>
+
+</body>
+</html>

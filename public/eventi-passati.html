@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <title>Eventi Passati - UmbriaFurs</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&family=Teko:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+  <nav>
+    <span class="UF-name">UMBRIAFURS</span>
+    
+    <button class="hamburger" id="hamburger">
+      <span class="material-icons">menu</span>
+    </button>
+
+    <ul class="nav-links" id="navLinks">
+      <li>
+        <a href="/index.html">
+          <span class="material-icons">home</span>
+          <span class="link-text">Home</span>
+        </a>
+      </li>
+      <li>
+        <a href="login.html">
+          <span class="material-icons">login</span>
+          <span class="link-text">Login</span>
+        </a>
+      </li>
+      <li>
+        <a href="eventi-passati.html">
+          <span class="material-icons">event_note</span>
+          <span class="link-text">Eventi Passati</span>
+        </a>
+      </li>
+      <li>
+          <a href="chi-siamo.html">
+            <span class="material-icons">groups</span>
+            <span class="link-text">Chi Siamo</span>
+          </a>
+      </li>
+    </ul>
+
+    <div class="overlay" id="overlay"></div>
+  
+  </nav>
+
+    <main class="main-event-container">
+            <div class="title-and-smts-text">
+                <a href="/index.html" class="back-button">
+                    <span class="material-icons">home</span> Torna alla Home
+                </a>
+                <h2>Archivio Eventi</h2>
+            </div>
+
+            <div class="events-container" id="eventsContainer">
+                <!-- Eventi caricati dinamicamente -->
+            </div>
+    </main>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-column">
+        <h3>Informazioni</h3>
+        <ul class="footer-links">
+          <li><a href="chi-siamo.html">Chi siamo</a></li>
+          <li><a href="#">Contatti</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Termini e condizioni</a></li>
+        </ul>
+      </div>
+    
+      <div class="footer-column">
+        <h3>Servizi</h3>
+        <ul class="footer-links">
+          <li><a href="#">Supporto</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Newsletter</a></li>
+        </ul>
+      </div>
+    
+      <div class="footer-column">
+          <h3>Social Media</h3>
+            <div class="social-links">
+                <a href="https://discord.gg/GCvM9KZMay" title="Discord"><img src="/img/discord-icon.webp" alt="Discord logo" class="footer-social-icon"></a>
+                <a href="https://t.me/UmbriaFurs" title="Telegram"><img src="/img/telegram-icon.webp" alt="Telegram logo" class="footer-social-icon"></a>
+                <a href="https://barq.app/c/qIP7UZM" title="BARQ!"><img src="/img/barq-icon.webp" alt="BARQ! logo" class="footer-social-icon"></a>
+                <a href="https://www.instagram.com/umbriafurs?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" title="Instagram"><img src="/img/Instagram-icon.webp" alt="Instagram logo" class="footer-social-icon"></a>
+            </div>
+        </div>
+      </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2025 UmbriaFurs. Tutti i diritti riservati.</p>
+    </div>
+  </footer>
+
+<script src="nav-static.js"></script>
+<script src="eventi-passati.js"></script>
+
+</body>
+</html>
