@@ -15,7 +15,7 @@ const JWT_SECRET = "mia_chiave_super_segreta";
 const pool = mysql.createPool({
     host: "localhost",
     user: "root",
-    password: "Riccardo2003",
+    password: "",
     database: "mio_db",
     waitForConnections: true,
     connectionLimit: 10,
