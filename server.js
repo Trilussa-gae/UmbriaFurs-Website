@@ -5,7 +5,7 @@ const cookieParser = require("cookie-parser");
 const jwt = require("jsonwebtoken");
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = 3306;
 
 app.use(express.json({ limit: '16mb' }));
 app.use(cookieParser());
