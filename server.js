@@ -5,7 +5,7 @@ const cookieParser = require("cookie-parser");
 const jwt = require("jsonwebtoken");
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.use(express.json({ limit: '16mb' }));
 app.use(cookieParser());
@@ -18,6 +18,7 @@ const pool = mysql.createPool({
     user: "mio-db",
     password: "Riccardo2003",
     database: "mio-db_events",
+        port: 5000,
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0
@@ -46,15 +47,6 @@ function checkAdmin(req, res, next) {
 app.use("/restricted", authenticateToken, checkAdmin, express.static("restricted"));
 
 /* ========================================== ROUTES PUBBLICHE ========================================== */
-app.get("/test-db", (req, res) => {
-    pool.query("SELECT 1 + 1 AS result", (err, results) => {
-        if (err) {
-            console.error("DB error:", err);
-            return res.status(500).send("Database connection failed");
-        }
-        res.json(results);
-    });
-});
 
 // Autenticazione
 app.post("/api/login", async (req, res) => {
