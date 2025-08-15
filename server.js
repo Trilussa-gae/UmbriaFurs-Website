@@ -11,13 +11,13 @@ app.use(express.json({ limit: '16mb' }));
 app.use(cookieParser());
 app.use(express.static("public"));
 
-const JWT_SECRET = process.env.JWT_SECRET;
+const JWT_SECRET = mia_chiave_super_segreta;
 
 const pool = mysql.createPool({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
+    host: "mysql-mio-db.alwaysdata.net",
+    user: "mio-db",
+    password: "Riccardo2003",
+    database: "mio-db_events",
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0
