@@ -5,7 +5,7 @@ const cookieParser = require("cookie-parser");
 const jwt = require("jsonwebtoken");
 
 const app = express();
-const PORT = 3306;
+const PORT = 5000;
 
 app.use(express.json({ limit: '16mb' }));
 app.use(cookieParser());
@@ -46,6 +46,15 @@ function checkAdmin(req, res, next) {
 app.use("/restricted", authenticateToken, checkAdmin, express.static("restricted"));
 
 /* ========================================== ROUTES PUBBLICHE ========================================== */
+app.get("/test-db", (req, res) => {
+    pool.query("SELECT 1 + 1 AS result", (err, results) => {
+        if (err) {
+            console.error("DB error:", err);
+            return res.status(500).send("Database connection failed");
+        }
+        res.json(results);
+    });
+});
 
 // Autenticazione
 app.post("/api/login", async (req, res) => {
