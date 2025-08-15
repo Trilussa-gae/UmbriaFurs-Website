@@ -39,7 +39,7 @@ async function loadGallery(eventId) {
                         <button class="view-full-btn" data-img-url="${imageUrl}">
                             <span class="material-icons">fullscreen</span> Visualizza
                         </button>
-                        <a href="${imageUrl}" download="umbriafurs-${eventId}-${index + 1}.webp" class="download-btn">
+                        <a href="${imageUrl}" download="umbriafurs-${eventId}-${index + 1}.jpg" class="download-btn">
                             <span class="material-icons">download</span> Scarica
                         </a>
                     </div>
@@ -77,7 +77,7 @@ function base64ToObjectURL(base64) {
         buffer[i] = char.charCodeAt(0);
     });
 
-    return URL.createObjectURL(new Blob([buffer], {type: 'image/webp'}));
+    return URL.createObjectURL(new Blob([buffer], {type: 'image/jpg'}));
 }
 
 window.onload = async function() {

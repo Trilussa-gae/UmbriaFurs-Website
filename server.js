@@ -1,22 +1,23 @@
+require('dotenv').config();
 const express = require("express");
 const mysql = require("mysql2");
 const cookieParser = require("cookie-parser");
 const jwt = require("jsonwebtoken");
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.use(express.json({ limit: '16mb' }));
 app.use(cookieParser());
 app.use(express.static("public"));
 
-const JWT_SECRET = "mia_chiave_super_segreta";
+const JWT_SECRET = process.env.JWT_SECRET;
 
 const pool = mysql.createPool({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "mio_db",
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0
@@ -708,6 +709,36 @@ app.post('/api/eventi/:id/foto', authenticateToken, checkAdmin, async (req, res)
     } catch (error) {
         console.error("Errore caricamento foto:", error);
         res.status(500).json({ success: false, message: "Errore caricamento foto" });
+    }
+});
+
+app.delete('/api/eventi/:eventoId/foto/:fotoId', authenticateToken, checkAdmin, async (req, res) => {
+    const { eventoId, fotoId } = req.params;
+
+    try {
+        const [result] = await pool.promise().execute(
+            'DELETE FROM eventi_foto WHERE id = ? AND evento_id = ?',
+            [fotoId, eventoId]
+        );
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ 
+                success: false, 
+                message: "Foto non trovata o non appartiene all'evento" 
+            });
+        }
+
+        res.json({ 
+            success: true, 
+            message: "Foto eliminata con successo" 
+        });
+    } catch (err) {
+        console.error("Errore eliminazione foto:", err);
+        res.status(500).json({ 
+            success: false, 
+            message: "Errore durante l'eliminazione della foto",
+            error: err.message 
+        });
     }
 });
 
