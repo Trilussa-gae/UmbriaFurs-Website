@@ -11,7 +11,7 @@ app.use(express.json({ limit: '16mb' }));
 app.use(cookieParser());
 app.use(express.static("public"));
 
-const JWT_SECRET = mia_chiave_super_segreta;
+const JWT_SECRET = "mia_chiave_super_segreta";
 
 const pool = mysql.createPool({
     host: "mysql-mio-db.alwaysdata.net",
