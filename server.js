@@ -18,6 +18,7 @@ const pool = mysql.createPool({
     user: "mio-db",
     password: "Riccardo2003",
     database: "mio-db_events",
+    port:3306,
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0
