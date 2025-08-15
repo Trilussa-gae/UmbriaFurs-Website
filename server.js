@@ -13,16 +13,15 @@ app.use(express.static("public"));
 
 const JWT_SECRET = "mia_chiave_super_segreta";
 
-const db = mysql({
-  config: {
-        host: "mysql-mio-db.alwaysdata.net",
+const pool = mysql.createPool({
+    host: "mysql-mio-db.alwaysdata.net",
     user: "mio-db",
     password: "Riccardo2003",
     database: "mio-db_events",
-        port: "5000",
- },
-})
-
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
+});
 
 /* ========================================== AUTHENTICATION MIDDLEWARE ========================================== */
 function authenticateToken(req, res, next) {
