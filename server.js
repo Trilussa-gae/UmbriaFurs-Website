@@ -17,13 +17,11 @@ app.use(express.static("public"));
 const JWT_SECRET = process.env.JWT_SECRET;
 
 const pool = mysql.createPool({
-    host: "mysql-mio-db.alwaysdata.net",
-    user: "mio-db",
-    password: "Riccardo2003",
-    database: "mio-db_events",
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0
+  host: process.env.DB_HOST,     // yourusername.mysql.alwaysdata.net
+  user: process.env.DB_USER,     // username_dbname
+  password: process.env.DB_PASS, // your password
+  database: process.env.DB_NAME, // dbname
+  port: process.env.DB_PORT || 3306
 });
 
 /* ========================================== AUTHENTICATION MIDDLEWARE ========================================== */
