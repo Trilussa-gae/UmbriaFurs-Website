@@ -21,7 +21,10 @@ const pool = mysql.createPool({
   user: process.env.DB_USER,     // username_dbname
   password: process.env.DB_PASS, // your password
   database: process.env.DB_NAME, // dbname
-  port: process.env.DB_PORT || 3306
+  port: process.env.DB_PORT || 3306,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
 });
 
 /* ========================================== AUTHENTICATION MIDDLEWARE ========================================== */
