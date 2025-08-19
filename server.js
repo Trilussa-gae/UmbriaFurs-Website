@@ -3,22 +3,18 @@ import mysql from "mysql2/promise";
 import cookieParser from "cookie-parser";
 import jwt from "jsonwebtoken";
 import serverless from "serverless-http";
+import dotenv from "dotenv";
 
-
-require('dotenv').config();
-const express = require("express");
-const mysql = require("mysql2");
-const cookieParser = require("cookie-parser");
-const jwt = require("jsonwebtoken");
+dotenv.config(); // load .env variables
 
 const app = express();
-const PORT = 5000;
 
-app.use(express.json({ limit: '16mb' }));
+app.use(express.json({ limit: "16mb" }));
 app.use(cookieParser());
 app.use(express.static("public"));
 
-const JWT_SECRET = "mia_chiave_super_segreta";
+// Use env var for JWT secret
+const JWT_SECRET = process.env.JWT_SECRET;
 
 const pool = mysql.createPool({
     host: "mysql-mio-db.alwaysdata.net",
