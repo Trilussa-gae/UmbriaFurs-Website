@@ -1,3 +1,10 @@
+import express from "express";
+import mysql from "mysql2/promise";
+import cookieParser from "cookie-parser";
+import jwt from "jsonwebtoken";
+import serverless from "serverless-http";
+
+
 require('dotenv').config();
 const express = require("express");
 const mysql = require("mysql2");
@@ -5,7 +12,7 @@ const cookieParser = require("cookie-parser");
 const jwt = require("jsonwebtoken");
 
 const app = express();
-const PORT = 3306;
+const PORT = 5000;
 
 app.use(express.json({ limit: '16mb' }));
 app.use(cookieParser());
@@ -18,7 +25,6 @@ const pool = mysql.createPool({
     user: "mio-db",
     password: "Riccardo2003",
     database: "mio-db_events",
-    port:3306,
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0
@@ -753,6 +759,4 @@ app.use((req, res) => {
 });
 
 /* ========================================== AVVIO SERVER ========================================== */
-app.listen(PORT, () => {
-    console.log(`Server in ascolto su http://localhost:${PORT}`);
-});
+export default serverless(app);
