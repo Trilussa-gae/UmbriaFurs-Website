@@ -1,26 +1,30 @@
-require('dotenv').config();
-const express = require("express");
-const mysql = require("mysql2");
-const cookieParser = require("cookie-parser");
-const jwt = require("jsonwebtoken");
+import express from "express";
+import mysql from "mysql2/promise";
+import cookieParser from "cookie-parser";
+import jwt from "jsonwebtoken";
+import serverless from "serverless-http";
+import dotenv from "dotenv";
+
+dotenv.config(); // load .env variables
 
 const app = express();
-const PORT = process.env.PORT || 5000;
 
-app.use(express.json({ limit: '16mb' }));
+app.use(express.json({ limit: "16mb" }));
 app.use(cookieParser());
 app.use(express.static("public"));
 
+// Use env var for JWT secret
 const JWT_SECRET = process.env.JWT_SECRET;
 
 const pool = mysql.createPool({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0
+  host: process.env.DB_HOST,     // yourusername.mysql.alwaysdata.net
+  user: process.env.DB_USER,     // username_dbname
+  password: process.env.DB_PASS, // your password
+  database: process.env.DB_NAME, // dbname
+  port: process.env.DB_PORT || 3306,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
 });
 
 /* ========================================== AUTHENTICATION MIDDLEWARE ========================================== */
@@ -752,6 +756,4 @@ app.use((req, res) => {
 });
 
 /* ========================================== AVVIO SERVER ========================================== */
-app.listen(PORT, () => {
-    console.log(`Server in ascolto su http://localhost:${PORT}`);
-});
+export default serverless(app);
