@@ -1552,6 +1552,25 @@ select#availability{
     }
 }
 
+/* ============================================= 404 SECTION ============================================= */
+.github-link {
+  color: black;
+  text-decoration: underline; /* se vuoi la sottolineatura */
+}
+
+.github-link:hover {
+  color: #333; /* grigio scuro al passaggio del mouse */
+}
+
+.cookie-container {   
+  max-width: 1000px; 
+  margin: 17rem auto 11rem auto; 
+  padding: 2rem; 
+  background: #fff; 
+  border-radius: 12px; 
+  ùbox-shadow: 0 6px 24px rgba(0,0,0,0.08);}
+
+
 /* ============================================= RESTRICTED ============================================= */
 
 .admin-header .restricted-container h1{

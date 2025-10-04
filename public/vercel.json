@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    { "source": "/chi-siamo", "destination": "/chi-siamo.html" },
+    { "source": "/eventi-passati", "destination": "/eventi-passati.html" },
+    { "source": "/foto-eventi", "destination": "/foto-eventi.html" },
+    { "source": "/foto-eventi/id1", "destination": "/foto-eventi-id1.html" },
+    { "source": "/foto-eventi/id2", "destination": "/foto-eventi-id2.html" },
+    { "source": "/foto-eventi/id3", "destination": "/foto-eventi-id3.html" },
+    { "source": "/foto-eventi/id4", "destination": "/foto-eventi-id4.html" },
+    { "source": "/foto-eventi/id5", "destination": "/foto-eventi-id5.html" }
+  ]
+}
